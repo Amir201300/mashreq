@@ -28,8 +28,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Manage/SourcesController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="157" column="30" lean-forward="true" selection-start-line="157" selection-start-column="30" selection-end-line="157" selection-end-column="30" />
+            <state>
+              <caret lean-forward="true" />
               <folding>
                 <element signature="e#47#67#0#PHP" expanded="true" />
                 <element signature="n#style#0;n#i#0;n#button#0;n#td#0;n#!!top" expanded="true" />
@@ -397,6 +397,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Controllers/Manage" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -449,12 +450,12 @@
       <workItem from="1603046403114" duration="2113000" />
       <workItem from="1603097053684" duration="65000" />
       <workItem from="1603131119713" duration="4736000" />
-      <workItem from="1603137866875" duration="8153000" />
+      <workItem from="1603137866875" duration="8463000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24409000" />
+    <option name="totallyTimeSpent" value="24719000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="696" extended-state="6" />
@@ -855,8 +856,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Manage/SourcesController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="157" column="30" lean-forward="true" selection-start-line="157" selection-start-column="30" selection-end-line="157" selection-end-column="30" />
+        <state>
+          <caret lean-forward="true" />
           <folding>
             <element signature="e#47#67#0#PHP" expanded="true" />
             <element signature="n#style#0;n#i#0;n#button#0;n#td#0;n#!!top" expanded="true" />
