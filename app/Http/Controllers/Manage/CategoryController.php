@@ -41,6 +41,7 @@ class CategoryController extends Controller
 
         $Category = new Category();
         $Category->name = $request->name;
+        $Category->type = $request->type;
         $Category->save();
         return response()->json(['errors' => false]);
     }
@@ -72,6 +73,7 @@ class CategoryController extends Controller
             return response()->json(['errors' => true]);
         }
         $Category->name = $request->name;
+        $Category->type = $request->type;
         $Category->save();
         return response()->json(['errors' => false]);
 
@@ -124,7 +126,14 @@ class CategoryController extends Controller
                 '<input type="checkbox" class="mybox" id="checkBox_' . $data->id . '" onclick="check(' . $data->id . ')">' .
                 '</div></td>';
             return $checkBox;
-        })->rawColumns(['action' => 'action', 'checkBox' => 'checkBox','icon'=>'icon'])->make(true);
+        })->editColumn('type',function($data){
+            if($data->type == 0){
+            $status='<button class="btn waves-effect waves-light btn-rounded btn-success statusBut">'.trans('main.News').'</button>';
+            }else{
+                $status='<button class="btn waves-effect waves-light btn-rounded btn-danger statusBut">'.trans('main.Live').'</button>';
+            }
+                return $status;
+        })->rawColumns(['action' => 'action', 'checkBox' => 'checkBox','icon'=>'icon','type' => 'type'])->make(true);
 
     }
 }

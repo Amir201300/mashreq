@@ -95,7 +95,7 @@ return [
 	'addAds'=>'الاعلانات والمنتجات',
 	'saleAndRant'=>'بيع وايجار',
 	'bay'=>'بيع فقط',
-	'rant'=>"ايجار فقط",
+	'rent'=>"ايجار فقط",
 	'chooseProduct'=>'الصلاحيات',
 	'tamplate'=>"النماذج",
 	'tamplate_value'=>'المميزات',
@@ -140,6 +140,8 @@ return [
 	'products'=>'المنتجات',
 	'imageGarally'=>'معرض الصور',
 	'video'=>'الفيديو',
+	'News'=>'اخبار',
+	'Live'=>'بث مباشر',
 
 	// Company
 	'Company'=>'الشركات',

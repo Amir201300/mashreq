@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers\Manage;
 
+use App\Models\Category;
 use App\Models\City;
+use App\Models\Source;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\DataTables\DataTables;
 use Validator, Auth;
-use App\Models\Source;
+use App\Models\News;
 
-class SourcesController extends Controller
+class NewsController extends Controller
 {
 
     /**
@@ -18,8 +20,10 @@ class SourcesController extends Controller
      */
     public function index(Request $request)
     {
+        $source = Source::all();
+        $cat = Category::all();
         $City = City::all();
-        return view('manage.Sources.index',compact('City'));
+        return view('manage.News.index',compact('City','source','cat'));
     }
 
     /**
@@ -28,7 +32,7 @@ class SourcesController extends Controller
      */
     public function view(Request $request)
     {
-        $Sources = Source::orderBY('created_at', 'desc')->get();
+        $Sources = News::orderBY('created_at', 'desc')->get();
         return $this->dataFunction($Sources);
     }
 
@@ -40,19 +44,20 @@ class SourcesController extends Controller
     public function store(Request $request)
     {
 
-        $this->validate(
-            $request,
-            [
-                'name' => 'required',
-            ]
-        );
-        $Sources = new Source();
-        $Sources->name = $request->name;
-        $Sources->desc = $request->desc;
-        $Sources->city_id = $request->city_id;
-        $Sources->logo = saveImage('Sources',$request->logo);
-        $Sources->cover_photo = saveImage('Sources_cover',$request->cover_photo);
-        $Sources->save();
+        $News = new News();
+        $News->title = $request->title;
+        $News->content = $request->desc;
+        $News->agel = $request->agel;
+        $News->date = $request->date;
+        $News->status = $request->status;
+        $News->cat_id = $request->cat_id;
+        $News->city_id = $request->city_id;
+        $News->source_id = $request->source_id;
+        if ($request->image){
+        $News->image = saveImage('News',$request->image);}
+        if ($request->video){
+        $News->video = saveImage('News_videos',$request->video);}
+        $News->save();
         return response()->json(['errors' => false]);
     }
 
@@ -62,12 +67,12 @@ class SourcesController extends Controller
      */
     public function show($id)
     {
-        $Sources = Source::find($id);
-        if (is_null($Sources)) {
+        $News = News::find($id);
+        if (is_null($News)) {
             return BaseController::Error('Product not exist', 'الكلمة الدلالية غير موجودة');
         }
 
-        return $Sources;
+        return $News;
     }
 
 
@@ -78,22 +83,27 @@ class SourcesController extends Controller
      */
     public function update(Request $request)
     {
-        $Sources = Source::find($request->id);
-        if (is_null($Sources)) {
+        $News = News::find($request->id);
+        if (is_null($News)) {
             return response()->json(['errors' => true]);
         }
-        $Sources->name = $request->name;
-        $Sources->desc = $request->desc;
-        $Sources->city_id = $request->city_id;
-        if ($request->logo){
-            deleteFile('City',$Sources->logo);
-            $Sources->logo = saveImage('Sources',$request->logo);
+        $News->title = $request->title;
+        $News->content = $request->desc;
+        $News->agel = $request->agel;
+        $News->date = $request->date;
+        $News->status = $request->status;
+        $News->cat_id = $request->cat_id;
+        $News->city_id = $request->city_id;
+        $News->source_id = $request->source_id;
+        if ($request->image){
+            deleteFile('News',$News->image);
+            $News->image = saveImage('News',$request->image);
         }
-        if ($request->cover_photo){
-            deleteFile('City',$Sources->cover_photo);
-            $Sources->cover_photo = saveImage('Sources_cover',$request->cover_photo);
+        if ($request->video){
+            deleteFile('News_videos',$News->video);
+            $News->video = saveImage('News_videos',$request->video);
         }
-        $Sources->save();
+        $News->save();
         return response()->json(['errors' => false]);
 
     }
@@ -107,9 +117,9 @@ class SourcesController extends Controller
     {
         if ($request->type == 2) {
             $ids = explode(',', $id);
-            $Ads = Source::whereIn('id', $ids)->delete();
+            $Ads = News::whereIn('id', $ids)->delete();
         } else {
-            $Ads = Source::find($id);
+            $Ads = News::find($id);
             if (is_null($Ads)) {
                 return 5;
             }
@@ -126,9 +136,9 @@ class SourcesController extends Controller
      */
     public function ChangeStatus($id,Request $request)
     {
-        $Sources=Source::find($id);
-        $Sources->status=$request->status;
-        $Sources->save();
+        $News=News::find($id);
+        $News->status=$request->status;
+        $News->save();
         return response()->json(['errors' => false]);
     }
 
@@ -145,18 +155,29 @@ class SourcesController extends Controller
                 '<input type="checkbox" class="mybox" id="checkBox_' . $data->id . '" onclick="check(' . $data->id . ')">' .
                 '</div></td>';
             return $checkBox;
-        })->editColumn('logo',function($data){
-            $image='<a href="/images/Sources/'.$data->logo.'" target="_blank">'.
-                '<img src="/images/Sources/'.$data->logo.'" width="50" height="50"></a>';
+        })->editColumn('image',function($data){
+            $image='<a href="/images/News/'.$data->image.'" target="_blank">'.
+                '<img src="/images/News/'.$data->image.'" width="50" height="50"></a>';
             return $image;
-        })->editColumn('cover_photo',function($data){
-            $image='<a href="/images/Sources_cover/'.$data->cover_photo.'" target="_blank">'.
-                '<img src="/images/Sources_cover/'.$data->cover_photo.'" width="50" height="50"></a>';
+        })->editColumn('video',function($data){
+            $image='<a href="/images/News_videos/'.$data->video.'" target="_blank">'.
+                '<img src="/images/News_videos/'.$data->video.'" width="50" height="50"></a>';
             return $image;
         })->editColumn('city_id',function($data){
             $city_id=$data->City ? $data->City->name : 'لايوجد';
             return $city_id;
-        })->rawColumns(['action' => 'action', 'checkBox' => 'checkBox','icon'=>'icon','logo' => 'logo', 'cover_photo' => 'cover_photo','city_id' => 'city_id'])->make(true);
+        })->editColumn('cat_id',function($data){
+            $cat_id=$data->cat ? $data->cat->name : 'لا يوجد';
+            return $cat_id;
+        })->editColumn('source_id',function($data){
+            $source_id=$data->Source ? $data->Source->name : 'لا يوجد' ;
+            return $source_id;
+        })->editColumn('status',function($data){
+            $status='<button class="btn waves-effect waves-light btn-rounded btn-success statusBut">'.trans('main.Active').'</button>';
+            if($data->status == 0)
+                $status='<button class="btn waves-effect waves-light btn-rounded btn-danger statusBut">'.trans('main.inActive').'</button>';
+            return $status;
+        })->rawColumns(['action' => 'action','status' => 'status', 'checkBox' => 'checkBox','icon'=>'icon','image' => 'image', 'video' => 'video','city_id' => 'city_id','cat_id' => 'cat_id','source_id' => 'source_id'])->make(true);
 
     }
 }

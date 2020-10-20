@@ -57,6 +57,24 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
                   Route::post('/update', 'Manage\SourcesController@update')->name('Sources.update');
                   Route::get('/delete/{id}', 'Manage\SourcesController@delete')->name('Sources.delete');
               });
+
+              //News routes
+              Route::prefix('News')->group(function () {
+                  Route::get('/index', 'Manage\NewsController@index')->name('News.index');
+                  Route::get('/view', 'Manage\NewsController@view')->name('News.view');
+                  Route::post('/store', 'Manage\NewsController@store')->name('News.store');
+                  Route::get('/show/{id}', 'Manage\NewsController@show')->name('News.show');
+                  Route::post('/update', 'Manage\NewsController@update')->name('News.update');
+                  Route::get('/delete/{id}', 'Manage\NewsController@delete')->name('News.delete');
+              });
+
+              //User routes
+              Route::prefix('User')->group(function () {
+                  Route::get('/index', 'Manage\UserController@index')->name('User.index');
+                  Route::get('/view', 'Manage\UserController@view')->name('User.view');
+                  Route::get('/show/{id}', 'Manage\UserController@show')->name('User.show');
+                  Route::get('/delete/{id}', 'Manage\UserController@delete')->name('User.delete');
+              });
         });
     });
 });

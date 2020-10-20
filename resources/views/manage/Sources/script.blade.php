@@ -195,11 +195,6 @@
 <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
 
 <script>
-    CKEDITOR.replace( 'desc' );
-
-</script>
-
-<script>
     function ChangeStatus(status,id) {
         TosetV2('{{ trans("main.proccess") }}','info','',false);
         $.ajax({

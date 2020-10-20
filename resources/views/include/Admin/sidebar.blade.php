@@ -61,6 +61,20 @@
                             </a>
                         </li>
 
+                        <li class="sidebar-item">
+                            <a class="sidebar-link  waves-effect waves-dark" href="{{route('News.index')}}" aria-expanded="false">
+                                <i class="fa fa-newspaper"></i>
+                                <span class="hide-menu">الاخبار</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link  waves-effect waves-dark" href="{{route('User.index')}}" aria-expanded="false">
+                                <i class="fa fa-users"></i>
+                                <span class="hide-menu">الاعضاء</span>
+                            </a>
+                        </li>
+
 {{--                        <li class="nav-small-cap">--}}
 {{--                            <i class="mdi mdi-dots-horizontal"></i>--}}
 {{--                            <span class="hide-menu">{{trans('main.settings')}} </span>--}}

@@ -18,14 +18,20 @@
             "search": "بحث :"
         },
 
-        ajax: "{{ route('Category.view') }}",
+        ajax: "{{ route('News.view') }}",
 
         columns:
             [
                 {data: 'checkBox', name: 'checkBox'},
                 {data: 'id', name: 'id'},
-                {data: 'name', name: 'name'},
-                {data: 'type', name: 'type'},
+                {data: 'title', name: 'title'},
+                {data: 'image', name: 'image'},
+                {data: 'video', name: 'video'},
+                {data: 'source_id', name: 'source_id'},
+                {data: 'cat_id', name: 'cat_id'},
+                {data: 'city_id', name: 'city_id'},
+                {data: 'view', name: 'view'},
+                {data: 'status', name: 'status'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
     });
@@ -42,7 +48,7 @@
 
         $('#save').text('حفظ');
 
-        $('#title').text('{{trans("اضافة قسم جديده")}}');
+        $('#title').text('{{trans("اضافة خبر جديده")}}');
 
         $('#formSubmit')[0].reset();
 
@@ -63,7 +69,7 @@
 
           var id=$('#id').val();
               var formData = new FormData($('#formSubmit')[0]);
-              url = save_method == 'add' ? "{{route('Category.store')}}" : "{{route('Category.update')}}" ;
+              url = save_method == 'add' ? "{{route('News.store')}}" : "{{route('News.update')}}" ;
           $.ajax({
           url : url,
           type : "post",
@@ -135,12 +141,18 @@
         $('#title').text('تعديل');
 
     $.ajax({
-      url : '/manage/Category/show/' +id,
+      url : '/manage/News/show/' +id,
       type : 'get',
       success : function(data){
 
-        $('#name').val(data.name);
-        $('#type').val(data.type);
+        $('#title').val(data.title);
+        $('#desc').val(data.desc);
+        $('#date').val(data.date);
+        $('#agel').val(data.agel);
+        $('#status').val(data.status);
+        $('#cat_id').val(data.cat_id);
+        $('#source_id').val(data.source_id);
+        $('#city_id').val(data.city_id);
         $('#id').val(id);
         $('#loadEdit_'+id).css({'display' : 'none'});
         $('#formModel').modal();
@@ -178,10 +190,10 @@
     {
       
       if(checkNum == 1){
-      deleteProccess("/manage/Category/delete/" +id_num);
+      deleteProccess("/manage/News/delete/" +id_num);
       }else{
         
-      deleteProccess("/manage/Category/delete/"+checkArray +'?type=2');
+      deleteProccess("/manage/News/delete/"+checkArray +'?type=2');
 
     }
       }
@@ -195,7 +207,7 @@
     function ChangeStatus(status,id) {
         TosetV2('{{ trans("main.proccess") }}','info','',false);
         $.ajax({
-            url : '/manage/Category/ChangeStatus/' +id +'?status='+status,
+            url : '/manage/News/ChangeStatus/' +id +'?status='+status,
             type : 'get',
             success : function(data){
                 $.toast().reset('all');

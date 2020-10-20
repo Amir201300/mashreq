@@ -1,7 +1,7 @@
 @extends('layouts.manage')
 
 @section('title')
-    الاقسام
+    الاخبار
 @endsection
 
 @section('content')
@@ -25,7 +25,7 @@
                                 <li class="breadcrumb-item">
                                     <a href="{{route('admin.dashboard')}}">{{trans('main.home')}}</a>
                                 </li>
-                                <li class="breadcrumb-item active" aria-current="page">الاقسام</li>
+                                <li class="breadcrumb-item active" aria-current="page">الاخبار</li>
                             </ol>
                         </nav>
                     </div>
@@ -48,11 +48,11 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex no-block align-items-center m-b-30">
-                                <h4 class="card-title">الاقسام</h4>
+                                <h4 class="card-title">الاخبار</h4>
                                 <div class="ml-auto">
                                     <div class="btn-group">
                                         <button  class="btn btn-dark " data-toggle="modal" onclick="addFunction()">
-                                            اضافة قسم جديده
+                                            اضافة خبر جديده
                                         </button>
                                         &nbsp;
                                         <button  class="btn btn-danger " data-toggle="modal" onclick="deleteFunction(0,2)">
@@ -71,8 +71,14 @@
                                     <tr>
                                         <th class="sorting_asc" tabindex="0" aria-controls="file_export" rowspan="1" colspan="1" aria-sort="ascending" aria-label=" : activate to sort column descending" style="width: 0px;"> </th>
                                         <th>#</th>
-                                        <th>الاسم</th>
-                                        <th>النوع</th>
+                                        <th>العنوان</th>
+                                        <th>صوره الخبر</th>
+                                        <th>فيديو</th>
+                                        <th>المصدر</th>
+                                        <th>القسم</th>
+                                        <th>المدينه</th>
+                                        <th>عدد المشاهدات</th>
+                                        <th> الحاله</th>
                                         <th>الاختيارات</th>
 
                                     </tr>
@@ -104,7 +110,7 @@
         <!-- ============================================================== -->
         <!-- footer -->
         <!-- ============================================================== -->
-    @include('manage.Category.form')
+    @include('manage.News.form')
 
     <!-- ============================================================== -->
         <!-- End footer -->
@@ -126,6 +132,6 @@
     <script src="/manage/dist/js/pages/datatable/datatable-basic.init.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.flash.min.js"></script>
-    @include('manage.Category.script')
+    @include('manage.News.script')
 
 @endsection

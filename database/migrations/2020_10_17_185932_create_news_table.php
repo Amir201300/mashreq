@@ -28,6 +28,7 @@ class CreateNewsTable extends Migration
             $table->string('video')->nullable();
             $table->integer('view')->nullable();
             $table->date('date')->nullable();
+            $table->tinyInteger('status')->nullable();
             $table->timestamps();
         });
     }

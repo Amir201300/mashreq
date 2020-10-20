@@ -12,14 +12,22 @@
                             <div class="modal-body">
                                 <div class="row">
 
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="example-email">الاسم </label>
                                             <input type="text" id="name" name="name" required class="form-control"   >
                                         </div>
                                     </div>
 
-
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>النوع</label>
+                                            <select class="custom-select col-12" id="type" name="type" >
+                                                <option value="0">اخبار</option>
+                                                <option value="1">بث مباشر</option>
+                                            </select>
+                                        </div>
+                                    </div>
 
                                     <div id="err"></div>
                                  <input type="hidden" name="id" id="id">

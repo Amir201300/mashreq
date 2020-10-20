@@ -1,7 +1,7 @@
 @extends('layouts.manage')
 
 @section('title')
-    الاقسام
+    الاعضاء
 @endsection
 
 @section('content')
@@ -25,7 +25,7 @@
                                 <li class="breadcrumb-item">
                                     <a href="{{route('admin.dashboard')}}">{{trans('main.home')}}</a>
                                 </li>
-                                <li class="breadcrumb-item active" aria-current="page">الاقسام</li>
+                                <li class="breadcrumb-item active" aria-current="page">الاعضاء</li>
                             </ol>
                         </nav>
                     </div>
@@ -48,11 +48,11 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex no-block align-items-center m-b-30">
-                                <h4 class="card-title">الاقسام</h4>
+                                <h4 class="card-title">الاعضاء</h4>
                                 <div class="ml-auto">
                                     <div class="btn-group">
                                         <button  class="btn btn-dark " data-toggle="modal" onclick="addFunction()">
-                                            اضافة قسم جديده
+                                            اضافة عضو جديده
                                         </button>
                                         &nbsp;
                                         <button  class="btn btn-danger " data-toggle="modal" onclick="deleteFunction(0,2)">
@@ -72,7 +72,9 @@
                                         <th class="sorting_asc" tabindex="0" aria-controls="file_export" rowspan="1" colspan="1" aria-sort="ascending" aria-label=" : activate to sort column descending" style="width: 0px;"> </th>
                                         <th>#</th>
                                         <th>الاسم</th>
-                                        <th>النوع</th>
+                                        <th>البريد الالكتروني</th>
+                                        <th> الصوره</th>
+                                        <th>الحاله </th>
                                         <th>الاختيارات</th>
 
                                     </tr>
