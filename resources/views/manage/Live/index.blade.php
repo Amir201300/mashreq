@@ -1,7 +1,7 @@
 @extends('layouts.manage')
 
 @section('title')
-    الاعضاء
+    بث مباشر
 @endsection
 
 @section('content')
@@ -25,7 +25,7 @@
                                 <li class="breadcrumb-item">
                                     <a href="{{route('admin.dashboard')}}">{{trans('main.home')}}</a>
                                 </li>
-                                <li class="breadcrumb-item active" aria-current="page">الاعضاء</li>
+                                <li class="breadcrumb-item active" aria-current="page">بث مباشر</li>
                             </ol>
                         </nav>
                     </div>
@@ -48,9 +48,12 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex no-block align-items-center m-b-30">
-                                <h4 class="card-title">الاعضاء</h4>
+                                <h4 class="card-title">بث مباشر</h4>
                                 <div class="ml-auto">
                                     <div class="btn-group">
+                                        <button  class="btn btn-dark " data-toggle="modal" onclick="addFunction()">
+                                            اضافة بث جديده
+                                        </button>
                                         &nbsp;
                                         <button  class="btn btn-danger " data-toggle="modal" onclick="deleteFunction(0,2)">
                                             حذف المحدد
@@ -69,9 +72,9 @@
                                         <th class="sorting_asc" tabindex="0" aria-controls="file_export" rowspan="1" colspan="1" aria-sort="ascending" aria-label=" : activate to sort column descending" style="width: 0px;"> </th>
                                         <th>#</th>
                                         <th>الاسم</th>
-                                        <th>البريد الالكتروني</th>
-                                        <th> الصوره</th>
-                                        <th>الحاله </th>
+                                        <th>الصوره</th>
+                                        <th>رابط البث</th>
+                                        <th> القسم</th>
                                         <th>الاختيارات</th>
 
                                     </tr>
@@ -103,6 +106,7 @@
         <!-- ============================================================== -->
         <!-- footer -->
         <!-- ============================================================== -->
+    @include('manage.Live.form')
 
     <!-- ============================================================== -->
         <!-- End footer -->
@@ -124,6 +128,6 @@
     <script src="/manage/dist/js/pages/datatable/datatable-basic.init.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.flash.min.js"></script>
-    @include('manage.User.script')
+    @include('manage.Live.script')
 
 @endsection

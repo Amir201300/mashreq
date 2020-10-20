@@ -75,6 +75,16 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
                   Route::get('/show/{id}', 'Manage\UserController@show')->name('User.show');
                   Route::get('/delete/{id}', 'Manage\UserController@delete')->name('User.delete');
               });
+
+              //Live routes
+              Route::prefix('Live')->group(function () {
+                  Route::get('/index', 'Manage\LiveController@index')->name('Live.index');
+                  Route::get('/view', 'Manage\LiveController@view')->name('Live.view');
+                  Route::post('/store', 'Manage\LiveController@store')->name('Live.store');
+                  Route::get('/show/{id}', 'Manage\LiveController@show')->name('Live.show');
+                  Route::post('/update', 'Manage\LiveController@update')->name('Live.update');
+                  Route::get('/delete/{id}', 'Manage\LiveController@delete')->name('Live.delete');
+              });
         });
     });
 });
